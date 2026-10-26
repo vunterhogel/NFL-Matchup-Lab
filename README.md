@@ -13,9 +13,10 @@ V1 starts with real, bundled public NFL data so the application works immediatel
 
 ## Run locally
 
-Use Node.js 22 or later.
+Use Node.js 22 or later. Run commands from the repository root, where `package.json` is located. For the existing local clone:
 
 ```sh
+cd ~/NFL-Matchup-Lab-git
 npm ci
 npm run dev
 ```
@@ -24,9 +25,15 @@ Open the local address printed by Vite. The initial view reads the bundled snaps
 
 ## Bring it to GitHub and StackBlitz
 
-1. Create a GitHub repository and upload the contents of this folder, including `package-lock.json` and the bundled `public/data` files.
-2. Import that repository into StackBlitz as a Vite/Node project.
-3. Run `npm install` and `npm run dev` if the development server does not start automatically.
+[Open NFL Matchup Lab in StackBlitz](https://stackblitz.com/github/vunterhogel/NFL-Matchup-Lab?startScript=dev)
+
+The repository root contains `package.json`, `package-lock.json`, `index.html`, `src/`, `public/` and `.stackblitzrc`. Keep this layout when uploading or cloning the project; do not wrap the app in another `nfl-matchup-lab/` folder.
+
+StackBlitz installs dependencies automatically, then runs `npm run dev`. Both `.stackblitzrc` and the `stackblitz` field in `package.json` declare that startup behavior. No terminal command or API key is needed to open the bundled app.
+
+If an existing StackBlitz workspace still shows the old nested folder, reopen the GitHub import link above to load the updated repository. Do not keep an empty root `package-lock.json` produced by running npm outside the app. The actual lockfile belongs beside the root `package.json`.
+
+If startup stops, read the terminal error first. A message that `package.json` is missing means the workspace is using an old folder layout. For manual startup from the correct root, run `npm install` followed by `npm run dev`.
 
 The project runs without Supabase, ESPN credentials or paid feeds. Refreshing the research data is a separate task from starting the interface. A private GitHub repository controls access to the source repository; it does not automatically add authentication to a deployed copy of the app. If the app later needs authenticated sharing, add that before deploying it beyond your intended audience.
 
